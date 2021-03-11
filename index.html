@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <section>
     <form class="form">
       <label class="form__label">Continent: </label>
       <input class="form__input" type="text" placeholder="Enter a continet" required>
@@ -24,12 +24,45 @@
         <button class="instruction__buttons--exit">Exit</button>
         <button class="instruction__buttons--continue">Continue</button>
       </section>
-    
     </article>
-  </section>
-  
+    <article class="container">
+        <header class="header">
+          <p class="header__title">Quiz</p>
+          <section class="header__timer">
+            <p class="header__timer--text">Time left</p>
+            <p class="header__timer--seconds">10</p>
+        </header>
+        <section class="question">
+          <img class="question__img" src="https://restcountries.eu/data/chn.svg">
+          <section class="question__options">
+            <article class="option">
+              <li>A</li>
+              <div class="icon tick"><i class="fas fa-check"></i></div>
+            </article>
+            <article class="option">
+              <li>B</li>
+              <div class="icon cross"><i class="fas fa-times"></i></div>
+            </article>
+            <article class="option">
+              <li>C</li>
+              <div class="icon"></i></div>
+            </article>
+            <article class="option">
+              <li>D</li>
+              <div class="icon"></i></div>
+            </article>
+          </section>
+        </section>
+        <footer class='footer'>
+          <p class="footer__text">2 of 5 Questions</p>
+          <button class="footer__button">Next</button>
+        </footer>
+    </article>
+    <article class="results">
+      
+    </article>
 
-
+  <script src="https://kit.fontawesome.com/f799e83e57.js" crossorigin="anonymous"></script>
   <script src="index.js"></script>
 </body>
 </html>
