@@ -69,9 +69,9 @@ const displayQuestions = (fetchedData, index) => {
    <article class="option"><li>${fetchedData[index].options[3]}</li></article>`;
   questionImg.innerHTML = flag;
   questionOptions.innerHTML = option;
-  const optionItem = Array.from(questionOptions.querySelectorAll('.option'));
+  const optionItemArray = Array.from(questionOptions.querySelectorAll('.option'));
   
-  optionItem.forEach(e => {
+  optionItemArray.forEach(e => {
     // nice discovery :D
     e.onclick = function() {
       let userAnswer = this.textContent;
@@ -81,17 +81,27 @@ const displayQuestions = (fetchedData, index) => {
       if (userAnswer === correctAnswer){
         this.classList.add('option__correct');
         points += 1;
+        e.classList.add('option__disabled');
         console.log('correct');
+        optionItemArray.forEach(e => {
+          e.classList.add('option__disabled');
+
+          })
       } else {
         this.classList.add('option__incorrect');
         console.log('wrong answer');
+        optionItemArray.forEach(e => {
+          e.classList.add('option__disabled');
+
+          })
       }
       console.log(points);
-  }
+    }
     // e.setAttribute("onclick", 'optionSelected(this, \'' + fetchedData[index] + '\', \'' + index + '\')');
   });
+ 
 
-  console.log(optionItem);
+  // console.log(optionItemArray);
 
   let questionNumber =  `<span><p>${fetchedData[questionCount].number}</p> of <p>${fetchedData.length}</p> Questions</span>`
   resultScore.innerHTML = questionNumber;

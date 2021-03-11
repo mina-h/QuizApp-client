@@ -211,6 +211,9 @@
 background: rgba(243, 96, 96, 0.89);
 }
 
+.option__disabled {
+  pointer-events: none;
+}
 
 
 .option:hover{
