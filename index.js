@@ -55,9 +55,14 @@ exitButton.addEventListener('click', () => {
 
 const displayQuestions = (fetchedData, index) => {
   const questionImg = document.querySelector('.question__img');
-  // const questionOptions = document.querySelector('.question__options');
+  const questionOptions = document.querySelector('.question__options');
   let flag = `<img src=${fetchedData[questionCount].question}>`;
-  // let option = 
+  let option = 
+  `<article class="option"><li>${fetchedData[questionCount].options[0]}</li></article>
+   <article class="option"><li>${fetchedData[questionCount].options[1]}</li></article>
+   <article class="option"><li>${fetchedData[questionCount].options[2]}</li></article>
+   <article class="option"><li>${fetchedData[questionCount].options[3]}</li></article>`;
   questionImg.innerHTML = flag;
+  questionOptions.innerHTML = option;
 
 }
