@@ -6,9 +6,11 @@ const continueButton = document.querySelector('.instruction__buttons--continue')
 const quizContainer = document.querySelector('.container');
 const nextButton = document.querySelector('.footer__button');
 const resultScore = document.querySelector('.footer__text');
+// const resultScoreText = document.querySelectorAll('.result__score--text p');
 
 let continent = input.value;
 let questionCount = 0;
+let points = 0;
 
 input.addEventListener('input', event => {
   continent = event.target.value;
@@ -73,9 +75,18 @@ const displayQuestions = (fetchedData, index) => {
     // nice discovery :D
     e.onclick = function() {
       let userAnswer = this.textContent;
-      console.log(userAnswer);
+      // console.log(userAnswer);
       let correctAnswer = fetchedData[index].answer;
-      console.log(correctAnswer);
+      // console.log(correctAnswer);
+      if (userAnswer === correctAnswer){
+        this.classList.add('option__correct');
+        points += 1;
+        console.log('correct');
+      } else {
+        this.classList.add('option__incorrect');
+        console.log('wrong answer');
+      }
+      console.log(points);
   }
     // e.setAttribute("onclick", 'optionSelected(this, \'' + fetchedData[index] + '\', \'' + index + '\')');
   });

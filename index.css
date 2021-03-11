@@ -200,12 +200,23 @@
   padding: .5rem 1rem;
   cursor: pointer;
 }
+
+.option__correct {
+  /* color: rgba(128, 255, 0, 0.733); */
+  background: rgba(188, 250, 125, 0.801);
+
+}
+
+.option__incorrect {
+background: rgba(243, 96, 96, 0.89);
+}
+
+
+
 .option:hover{
   /* color:rgb(219, 218, 218); */
   background:rgb(219, 218, 218);
   /* color: aliceblue; */
-
-
 }
 
 .tick {
