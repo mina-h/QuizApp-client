@@ -191,7 +191,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(189, 187, 187);
+  background-color: rgb(218, 218, 218);
   list-style: none;
   border-style: none;
   height: 2.5rem;
@@ -218,16 +218,23 @@ background: rgba(243, 96, 96, 0.89);
 
 .option:hover{
   /* color:rgb(219, 218, 218); */
-  background:rgb(219, 218, 218);
+  /* background:rgb(219, 218, 218); */
   /* color: aliceblue; */
 }
 
 .tick {
-  color: rgba(128, 255, 0, 0.733);
+  /* color: rgba(38, 75, 1, 0.589); */
+  color: rgb(73, 73, 73);
 }
 
+.tick:after {
+  content: "Correct ";
+}
 .cross {
-  color: red;
+  color: white;
+}
+.cross:after {
+  content: "Wrong ";
 }
 
 .footer {
@@ -240,9 +247,11 @@ background: rgba(243, 96, 96, 0.89);
   padding-right: 1.5rem;
   padding-left: 1.5rem;
 }
+
 .footer__text span{
-display: flex;
+  display: flex;
 }
+
 .footer__text p {
   padding-left: .2rem;
   padding-right: .2rem;
@@ -255,7 +264,6 @@ display: flex;
   outline: none;
   border-radius: 5px;
   cursor: pointer;
-
 }
 
 .footer__button:hover{

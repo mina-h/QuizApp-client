@@ -80,20 +80,27 @@ const displayQuestions = (fetchedData, index) => {
       // console.log(correctAnswer);
       if (userAnswer === correctAnswer){
         this.classList.add('option__correct');
+        this.classList.add('tick');
+
         points += 1;
         e.classList.add('option__disabled');
         console.log('correct');
         optionItemArray.forEach(e => {
           e.classList.add('option__disabled');
-
           })
       } else {
         this.classList.add('option__incorrect');
+        this.classList.add('cross');
         console.log('wrong answer');
         optionItemArray.forEach(e => {
           e.classList.add('option__disabled');
-
           })
+        optionItemArray.forEach(e => {
+          if(e.textContent === correctAnswer){
+            e.classList.add('option__correct');
+          }
+        })
+        
       }
       console.log(points);
     }
