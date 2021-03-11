@@ -1,5 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Vidaloka&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Vidaloka', serif;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  border-color: gray;
+  border-radius: 10px;
+}
+
+.instruction {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 10px;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  visibility: hidden
+
+}
+
+.instruction__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.instruction__buttons--exit,
+.instruction__buttons--continue {
+  margin-right: 1rem;
+  width: 5rem;
 }
