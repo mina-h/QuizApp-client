@@ -4,6 +4,8 @@ const instructionBox = document.querySelector('.instruction');
 const exitButton = document.querySelector('.instruction__buttons--exit');
 const continueButton = document.querySelector('.instruction__buttons--continue');
 const quizContainer = document.querySelector('.container');
+const nextButton = document.querySelector('.footer__button');
+const resultScore = document.querySelector('.footer__text');
 
 let continent = input.value;
 let questionCount = 0;
@@ -14,7 +16,6 @@ input.addEventListener('input', event => {
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-
 
   async function getapi(url) {
     const response =  await fetch(url);
@@ -30,6 +31,16 @@ form.addEventListener('submit', event => {
         quizContainer.classList.add('container__active');
         displayQuestions(data, questionCount);
       });
+      nextButton.addEventListener('click', () => {
+        if(questionCount < data.length -1){
+          questionCount += 1;
+          displayQuestions(data, questionCount);
+        } else {
+
+          console.log('no more questions');
+        }
+        
+      }) 
       
     }
   }
@@ -40,18 +51,10 @@ form.addEventListener('submit', event => {
   input.value = '';
 });
 
-// exitButton.addEventListener('click', () => {
-//   instructionBox.classList.remove('active');
-// })
 exitButton.addEventListener('click', () => {
   instructionBox.classList.remove('instruction__active');
 });
 
-// continueButton.addEventListener('click', () => {
-//   instructionBox.classList.remove('instruction__active');
-//   quizContainer.classList.add('container__active');
-
-// });
 
 const displayQuestions = (fetchedData, index) => {
   const questionImg = document.querySelector('.question__img');
@@ -65,4 +68,8 @@ const displayQuestions = (fetchedData, index) => {
   questionImg.innerHTML = flag;
   questionOptions.innerHTML = option;
 
+  let questionNumber =  `<span><p>${fetchedData[questionCount].number}</p> of <p>${fetchedData.length}</p> Questions</span>`
+  resultScore.innerHTML = questionNumber;
 }
+
+
