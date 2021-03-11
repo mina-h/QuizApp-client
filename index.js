@@ -1,9 +1,12 @@
 const form = document.querySelector('.form');
 const input = document.querySelector('.form__input');
-// const instructionBox = document.querySelector('.instruction');
-
+const instructionBox = document.querySelector('.instruction');
+const exitButton = document.querySelector('.instruction__buttons--exit');
+const continueButton = document.querySelector('.instruction__buttons--continue');
+const quizContainer = document.querySelector('.container');
 
 let continent = input.value;
+let questionCount = 0;
 
 input.addEventListener('input', event => {
   continent = event.target.value;
@@ -20,19 +23,41 @@ form.addEventListener('submit', event => {
       alert('"Please enter a continent"');
       return;
     } else {
+      instructionBox.classList.add('instruction__active');
       console.log(data);
-      // form.style.visibility = 'hidden';
-      // instructionBox.style.visibility = 'visible';
+      continueButton.addEventListener('click', () => {
+        instructionBox.classList.remove('instruction__active');
+        quizContainer.classList.add('container__active');
+        displayQuestions(data, questionCount);
+      });
+      
     }
   }
-  // 0: {number: 1, question: "https://restcountries.eu/data/cpv.svg", answer: "Praia", options: Array(4)}
-  // 1: {number: 2, question: "https://restcountries.eu/data/caf.svg", answer: "Bangui", options: Array(4)}
-  // 2: {number: 3, question: "https://restcountries.eu/data/tcd.svg", answer: "N'Djamena", options: Array(4)}
-  // 3: {number: 4, question: "https://restcountries.eu/data/com.svg", answer: "Moroni", options: Array(4)}
-  // 4: {number: 5, question: "https://restcountries.eu/data/cog.svg", answer: "Brazzaville", options: Array(4)}
  
 
   getapi(`http://localhost:8080/api/?continent=${continent}`);
 
   input.value = '';
 });
+
+// exitButton.addEventListener('click', () => {
+//   instructionBox.classList.remove('active');
+// })
+exitButton.addEventListener('click', () => {
+  instructionBox.classList.remove('instruction__active');
+});
+
+// continueButton.addEventListener('click', () => {
+//   instructionBox.classList.remove('instruction__active');
+//   quizContainer.classList.add('container__active');
+
+// });
+
+const displayQuestions = (fetchedData, index) => {
+  const questionImg = document.querySelector('.question__img');
+  // const questionOptions = document.querySelector('.question__options');
+  let flag = `<img src=${fetchedData[questionCount].question}>`;
+  // let option = 
+  questionImg.innerHTML = flag;
+
+}
