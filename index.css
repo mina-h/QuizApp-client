@@ -132,7 +132,7 @@
   background-color: white;
 }
 
-.container.container__active {
+.container__active {
   z-index: 5;
   opacity: 1;
   pointer-events: auto;
@@ -258,6 +258,7 @@ background: rgba(243, 96, 96, 0.89);
 }
 
 .footer__button {
+  display: none;
   height: 2rem;
   width: 5rem;
   border: none;
@@ -297,6 +298,13 @@ background: rgba(243, 96, 96, 0.89);
     
 } 
 
+.result__active {
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50% -50%) scale(1);
+}
+
 .result__icon {
   font-size: 2rem;
 }
@@ -319,6 +327,7 @@ background: rgba(243, 96, 96, 0.89);
 }
 
 .result__buttons--restart {
+
   margin-right: .5rem;
   width: 5rem;
   border: none;
