@@ -1,6 +1,3 @@
-//todo
-// create border for flags 
-//make it center
 const form = document.querySelector('.form');
 const input = document.querySelector('.form__input');
 const instructionBox = document.querySelector('.instruction');
@@ -11,17 +8,16 @@ const nextButton = document.querySelector('.footer__button');
 const resultScore = document.querySelector('.footer__text');
 const timerCount = document.querySelector('.header__timer--seconds');
 const result = document.querySelector('.results');
-const restart = document.querySelector('.result__buttons--restart');
+const resultText = document.querySelector('.result__score');
 const quit = document.querySelector('.result__buttons--quit');
 
-// const resultScoreText = document.querySelectorAll('.result__score--text p');
 
 let continent = input.value;
 let questionCount = 0;
 let points = 0;
 let counter;
 
-const startTimer = time => {
+const startTimer = (time, dataa, i) => {
   counter = setInterval(timer, 700);
   function timer() {
     timerCount.textContent = time;
@@ -29,15 +25,23 @@ const startTimer = time => {
     if(time < 0) {
       clearInterval(counter);
       timerCount.textContent = '00';
+      let correctAnswer = dataa[i].answer;
+      const questionOptions = document.querySelector('.question__options');
+      const optionItemArray = Array.from(questionOptions.querySelectorAll('.option'));
+      optionItemArray.forEach(e => {
+        if (e.textContent === correctAnswer) {
+          e.classList.add('option__correct');
+        }
+      });
+      optionItemArray.forEach(e => {
+        e.classList.add('option__disabled');
+      });
+      nextButton.style.display = 'block';
+
+
     }
   }
 }
-
-// const showResult = () => {
-//   instructionBox.classList.remove('instruction__active');
-//   quizContainer.classList.remove('container__active');
-//   result.classList.add('result__active');
-// }
 
 
 input.addEventListener('input', event => {
@@ -60,14 +64,14 @@ form.addEventListener('submit', event => {
         instructionBox.classList.remove('instruction__active');
         quizContainer.classList.add('container__active');
         displayQuestions(data, questionCount);
-        startTimer(10);
+        startTimer(10, data, questionCount);
       });
       nextButton.addEventListener('click', () => {
         if(questionCount < data.length -1){
           questionCount += 1;
           displayQuestions(data, questionCount);
           clearInterval(counter);
-          startTimer(10);
+          startTimer(10, data,questionCount);
           nextButton.style.display = 'none';
 
         } else {
@@ -75,6 +79,13 @@ form.addEventListener('submit', event => {
           instructionBox.classList.remove('instruction__active');
           quizContainer.classList.remove('container__active');
           result.classList.add('result__active');
+          if (points > 3) {
+            let text = `<span class="result__score--text">Yeayyy you got ${points} out of 5 🏆 </span>`
+            resultText.innerHTML = text;
+          } else {
+            let text = `<span class="result__score--text">Oo Oo you got only ${points} out of 5 🥔</span> `
+            resultText.innerHTML = text;
+          }
           console.log('no more questions');
         }
       }) 
@@ -92,6 +103,7 @@ exitButton.addEventListener('click', () => {
 
 
 const displayQuestions = (fetchedData, index) => {
+  console.log(fetchedData);
   const questionImg = document.querySelector('.question__img');
   const questionOptions = document.querySelector('.question__options');
   let flag = `<img src=${fetchedData[index].question}>`;
@@ -111,9 +123,7 @@ const displayQuestions = (fetchedData, index) => {
       nextButton.style.display = 'block';
 
       let userAnswer = this.textContent;
-      // console.log(userAnswer);
       let correctAnswer = fetchedData[index].answer;
-      // console.log(correctAnswer);
       if (userAnswer === correctAnswer){
         this.classList.add('option__correct');
         this.classList.add('tick');
@@ -137,26 +147,18 @@ const displayQuestions = (fetchedData, index) => {
           }
         })
       }
-
-      console.log(points);
     }
-    // e.setAttribute("onclick", 'optionSelected(this, \'' + fetchedData[index] + '\', \'' + index + '\')');
   });
  
-
-  // console.log(optionItemArray);
-
-  let questionNumber =  `<span><p>${fetchedData[questionCount].number}</p> of <p>${fetchedData.length}</p> Questions</span>`
+  let questionNumber =  `<span><p>${fetchedData[index].number}</p> of <p>${fetchedData.length}</p> Questions</span>`
   resultScore.innerHTML = questionNumber;
 }
 
 
-// const optionSelected = (answer, data, i) => {
-//   let userAnswer = answer.textContent;
-//   console.log(data);
-//   let correctAnswer = data[i].answer;
-//   console.log(correctAnswer);
-// }
+quit.onclick = () => {
+  window.location.reload();
+}
+
 
 
 
